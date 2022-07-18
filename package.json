@@ -1,6 +1,9 @@
 {
   "name": "wisper-api",
   "version": "1.0.0",
+  "engines": {
+    "node": "v16.13.1"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {
