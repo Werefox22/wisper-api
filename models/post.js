@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   post.init({
-    id: DataTypes.INTEGER,
     body: DataTypes.STRING,
     likes: DataTypes.INTEGER,
     shares: DataTypes.INTEGER,
