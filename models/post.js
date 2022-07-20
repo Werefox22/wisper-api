@@ -14,12 +14,34 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   post.init({
-    body: DataTypes.STRING,
-    likes: DataTypes.INTEGER,
-    shares: DataTypes.INTEGER,
-    edited: DataTypes.BOOLEAN,
-    date: DataTypes.DATE,
-    user_id: DataTypes.INTEGER
+    body: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    likes: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    shares: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    edited: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Date.now()
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'post',
