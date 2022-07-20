@@ -24,6 +24,7 @@ id		| integer	| The post ID
 body	| string	| The text body of the post
 likes	| integer	| The amount of likes the post has
 shares	| integer	| The amount of shares the post has
+tags	| string	| The tags on the post
 edited	| bool		| Whether or not the post has been edited
 date	| date		| The time the post was created
 user_id	| integer	| The profile ID of the user who posted it

@@ -3,23 +3,23 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class post extends Model {
-    static associate({ user, comment }) {
+  class comment extends Model {
+    static associate({ post, user }) {
+      // belongs to post
+      comment.belongsTo(post, {
+        foreignKey: "post_id",
+        as: "post"
+      })
+
       // belongs to user
-      post.belongsTo(user, {
+      comment.belongsTo(user, {
         foreignKey: "user_id",
         as: "user"
       })
-
-      // has many comments
-      post.hasMany(comment, {
-        foreignKey: "comment_id",
-        as: "comments"
-      })
     }
   }
-  post.init({
-    post_id: {
+  comment.init({
+    comment_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
@@ -38,9 +38,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 0
     },
-    tags: {
-      type: DataTypes.STRING
-    },
     edited: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
@@ -54,11 +51,15 @@ module.exports = (sequelize, DataTypes) => {
     user_id: {
       type: DataTypes.SMALLINT,
       allowNull: false
+    },
+    post_id: {
+      type: DataTypes.SMALLINT,
+      allowNull: false
     }
-  }, {
+}, {
     sequelize,
-    modelName: 'post',
+    modelName: 'comment',
     timestamps: false
   });
-  return post;
+  return comment;
 };
