@@ -1,7 +1,7 @@
 const comments = require('express').Router()
 const db = require('../models')
 const { comment } = db
-const { Op } = require('sequelie')
+const { Op } = require('sequelize')
 
 //CREATE A COMMENT
 comments.post('/', async (req, res) => {
