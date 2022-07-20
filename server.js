@@ -39,3 +39,8 @@ app.get('/', (req, res) => {
 })
 
 app.listen(process.env.PORT)
+
+//CONTROLLERS
+
+const postsController = require('./controllers/post-controller')
+app.use('/post', postsController)
