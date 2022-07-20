@@ -22,6 +22,9 @@ module.exports = {
         allowNull: false,
         defaultValue: 0
       },
+      tags: {
+        type: Sequelize.STRING
+      },  
       edited: {
         type: Sequelize.BOOLEAN,
         allowNull: false,

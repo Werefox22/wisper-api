@@ -6,14 +6,10 @@ module.exports = (sequelize, DataTypes) => {
   class post extends Model {
     static associate({ user, comment }) {
       // belongs to user
-      post.belongsTo(user, {
-        foreignKey: "user_id"
-      })
+      post.belongsTo(user)
 
       // has many comments
-      post.hasMany(comment, {
-        foreignKey: "post_id"
-      })
+      post.hasMany(comment)
     }
   }
   post.init({
@@ -35,6 +31,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0
+    },
+    tags: {
+      type: DataTypes.STRING
     },
     edited: {
       type: DataTypes.BOOLEAN,
