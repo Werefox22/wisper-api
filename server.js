@@ -41,6 +41,11 @@ app.get('/', (req, res) => {
 	res.send("Hello world!")
 })
 
+//WILDCARD ERROR
+app.get('*', (req, res) => {
+	res.send('404')
+})
+
 app.listen(process.env.PORT)
 
 //CONTROLLERS
@@ -51,3 +56,5 @@ app.use('/post', postsController)
 const commentsController = require('./controllers/comment-controller')
 app.use('/post/:id/comment', commentsController)
 
+const usersController = require('./controllers/user-controller')
+app.use('/user', usersController)
