@@ -9,6 +9,7 @@ app.use(express.json())
 // dotenv
 require('dotenv').config()
 
+//ROOT
 app.get('/', (req, res) => {
 	res.send("Hello world!")
 })
