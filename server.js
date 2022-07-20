@@ -39,3 +39,12 @@ app.get('/', (req, res) => {
 })
 
 app.listen(process.env.PORT)
+
+//CONTROLLERS
+
+const postsController = require('./controllers/post-controller')
+app.use('/post', postsController)
+
+const commentsController = require('./controllers/comment-controller')
+app.use('/post/:id/comment', commentsController)
+
