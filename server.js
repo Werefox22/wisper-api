@@ -46,8 +46,6 @@ app.get('*', (req, res) => {
 	res.send('404')
 })
 
-app.listen(process.env.PORT)
-
 //CONTROLLERS
 
 const postsController = require('./controllers/post-controller')
@@ -58,3 +56,7 @@ app.use('/post/:id/comment', commentsController)
 
 const usersController = require('./controllers/user-controller')
 app.use('/user', usersController)
+
+app.listen(process.env.PORT, () => {
+	console.log("Successfully started on port " + process.env.PORT)
+})
