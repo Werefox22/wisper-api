@@ -33,7 +33,10 @@ sequelize
 		console.error('Unable to connect to the database:', err);
 	});
 
+const db = require('./models')
+db.sequelize.sync({ force: true })
 
+// routes
 app.get('/', (req, res) => {
 	res.send("Hello world!")
 })

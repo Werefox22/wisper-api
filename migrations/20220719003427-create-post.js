@@ -36,7 +36,7 @@ module.exports = {
         defaultValue: Date.now()
       },
       user_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.SMALLINT,
         allowNull: false
       }
     });
