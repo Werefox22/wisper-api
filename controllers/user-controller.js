@@ -1,6 +1,6 @@
 const users = require('express').Router()
 const db = require('../models')
-const { user } = db
+const { user, post } = db
 const { Op } = require('sequelize')
 
 //GET SPECIFIC USER
@@ -11,7 +11,7 @@ users.get('/:id', async (req, res) => {
             console.log("With posts!")
             foundUser = await user.findOne({
                 where: { user_id: req.params.id },
-                include: posts
+                include: post
             })
         } else {
             foundUser = await user.findOne({
