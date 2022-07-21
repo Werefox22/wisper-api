@@ -1,5 +1,4 @@
 require('dotenv').config()
-console.log("Running config.js now")
 
 module.exports = {
   "development": {
