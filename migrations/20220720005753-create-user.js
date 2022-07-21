@@ -13,9 +13,9 @@ module.exports = {
         defaultValue: ""
       },
       following: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: []
+        defaultValue: 0
       },
       followed: {
         type: Sequelize.INTEGER,
