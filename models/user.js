@@ -29,9 +29,9 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: ""
     },
     following: {
-      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: []
+      defaultValue: 0
     },
     followed: {
       type: DataTypes.INTEGER,

@@ -1,10 +1,31 @@
-const DB = require("./models/index");
+const DB = require("../models/index");
 
 DB.sequelize.sync({ force: true }).then(async function () {
-  await DB.posts.create(
+  await DB.user.bulkCreate([
+    {
+      user_id: 1,
+      bio: "Sartorial humblebrag normcore, est occaecat adaptogen mixtape distillery pabst hexagon typewriter dolore. Chillwave mustache venmo edison bulb, actually hot chicken ugh in in velit kogi aute.",
+      following: 846,
+      followed: 894,
+    },
+    {
+      user_id: 2,
+      bio: "3 wolf moon occupy lo-fi pop-up 90's pug raclette, try-hard kogi kickstarter tilde shabby chic fingerstache gochujang dreamcatcher",
+      following: 365,
+      followed: 132,
+    },
+    {
+      user_id: 3,
+      bio: "Mumblecore roof party thundercats vexillologist pitchfork, sartorial banh mi next level prism taxidermy. Ramps wayfarers gentrify tumblr.",
+      following: 12,
+      followed: 99,
+    }
+	])
+
+  await DB.post.bulkCreate([
     {
       post_id: 1,
-      body: "Im baby labore semiotics cronut lomo intelligentsia tattooed esse tbh meh shabby chic. Taiyaki post-ironic XOXO flexitarian raclette try-hard. Pop-up artisan helvetica schlitz vaporware pitchfork freegan cronut. Semiotics yr kombucha cardigan ramps cold-pressed pabst",
+      body: "Im baby labore semiotics cronut lomo intelligentsia tattooed esse tbh meh shabby chic. Taiyaki post-ironic XOXO flexitarian raclette try-hard. Pop-up artisan helvetica schlitz vaporware pitchfork freegan cronut.",
       likes: 456,
       shares: 76,
       tags: 16,
@@ -26,29 +47,9 @@ DB.sequelize.sync({ force: true }).then(async function () {
       tags: 9,
       user_id: "3",
     }
-  );
 
-  await DB.users.create(
-    {
-      user_id: 1,
-      bio: "Sartorial humblebrag normcore, est occaecat adaptogen mixtape distillery pabst hexagon typewriter dolore. Chillwave mustache venmo edison bulb, actually hot chicken ugh in in velit kogi aute.",
-      following: 846,
-      followed: 894,
-    },
-    {
-      user_id: 2,
-      bio: "3 wolf moon occupy lo-fi pop-up 90's pug raclette, try-hard kogi kickstarter tilde shabby chic fingerstache gochujang dreamcatcher",
-      following: 365,
-      followed: 132,
-    },
-    {
-      user_id: 3,
-      bio: "Mumblecore roof party thundercats vexillologist pitchfork, sartorial banh mi next level prism taxidermy. Ramps wayfarers gentrify tumblr.",
-      following: 12,
-      followed: 99,
-    }
-  );
-  await DB.comments.create(
+  ]);
+  await DB.comment.bulkCreate([
     {
       comment_id: 1,
       body: "Put a bird on it sriracha palo santo occupy chia, drinking vinegar lomo craft beer 3 wolf moon.",
@@ -73,5 +74,5 @@ DB.sequelize.sync({ force: true }).then(async function () {
       user_id: "3",
       post_id: "3",
     }
-  );
+  ]);
 });
