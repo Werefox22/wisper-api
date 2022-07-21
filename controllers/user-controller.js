@@ -2,7 +2,6 @@ const users = require('express').Router()
 const db = require('../models')
 const { user } = db
 const { Op } = require('sequelize')
-const comments = require('./comment-controller')
 
 //GET SPECIFIC USER
 users.get('/:id', async (req, res) => {
