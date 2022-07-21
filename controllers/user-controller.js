@@ -6,7 +6,7 @@ const { Op } = require('sequelize')
 //GET SPECIFIC USER
 users.get('/:id', async (req, res) => {
     try {
-        const foundUser = {}
+        let foundUser = {}
         if (req.query.withPosts === "true") {
             console.log("With posts!")
             foundUser = await user.findOne({
@@ -19,7 +19,23 @@ users.get('/:id', async (req, res) => {
             })
         }
 
-        res.status(200).json(foundUser.json())
+        res.status(200).json(foundUser)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
+// temp route
+users.get('/:id/following', async (req, res) => {
+    try {
+        let foundUser = await user.findOne({
+            where: { user_id: req.params.id },
+            include: {
+                model: user,
+                as: "following"
+            }
+        })
+        res.status(200).json(foundUser)
     } catch (error) {
         res.status(500).json(error)
     }
