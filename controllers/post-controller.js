@@ -1,14 +1,24 @@
 const posts = require('express').Router()
 const db = require('../models')
-const { post } = db
+const { post, comment } = db
 const { Op } = require('sequelize') 
 
 //GET SPECIFIC POST
 posts.get('/:id', async (req, res) => {
     try {
-        const foundPost = await post.findOne({
-            where: { post_id: req.params.id }
-        })
+        const foundPost = {}
+        if (req.query.withComments === "true") {
+            console.log('with comments!')
+            foundPost = await post.findOne({
+                where: { post_id: req.params.id }, 
+                include: comment
+            })
+        } else {
+            foundPost = await post.findOne({
+                where: { post_id: req.params.id }
+            })
+        }
+        res.status(200).json(foundUser.json())
     } catch (error) {
         res.status(500).json(error)
     }
