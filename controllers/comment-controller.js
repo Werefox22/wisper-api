@@ -1,7 +1,19 @@
 const comments = require('express').Router()
 const db = require('../models')
-const { comment } = db
+const { comment, post } = db
 const { Op } = require('sequelize')
+
+//GET SPECIFIC COMMENT
+comments.get('/:id', async (req, res) => {
+    try {
+        const foundComment = await comment.findOne({
+            where: { comment_id: req.params.id }
+        })
+        res.status(200).send(foundComment.json)
+    } catch (error) {
+        res.status(500).send(error.json)
+    }
+})
 
 //CREATE A COMMENT
 comments.post('/', async (req, res) => {
