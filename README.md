@@ -5,16 +5,16 @@ Method	| Path					| Purpose
 ---		| --- 					| ---
 GET 	| /						| Landing page
 GET		| /post/:id				| Get specific post
-GET		| /post/user/:userid	| Get all posts by a specific user
+GET		| /post/:id?withComments=true | Get specific post and eager load the comments
 POST	| /post					| Create new post
 PUT		| /post/:id				| Update post
 DELETE	| /post/:id				| Delete post
 GET		| /comment/:id			| Get specific comment
-GET		| /comment/post/:postid	| Get all comments on a specific post
 POST	| /comment 				| Create comment
 PUT		| /comment/:id			| Edit comment
 DELETE	| /comment/:id			| Delete comment
-GET		| /user/:id				| Get specific user profile
+GET		| /user/:id				| Get specific user
+GET		| /user/:id?withPosts	| Get specific user and eager load their posts
 PUT		| /user/:id				| Update user profile
 DELETE	| /user/:id				| Delete user profile
 GET		| *						| 404 page

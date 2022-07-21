@@ -1,6 +1,6 @@
 const comments = require('express').Router()
 const db = require('../models')
-const { comment, post } = db
+const { comment } = db
 const { Op } = require('sequelize')
 
 //GET SPECIFIC COMMENT
