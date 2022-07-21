@@ -3,16 +3,18 @@
 ## Routing
 Method	| Path					| Purpose
 ---		| --- 					| ---
-GET 	| /						| Landing page, personal post feed, create post form
+GET 	| /						| Landing page
+GET		| /post/:id				| Get specific post
+GET		| /post/user/:userid	| Get all posts by a specific user
 POST	| /post					| Create new post
 PUT		| /post/:id				| Update post
 DELETE	| /post/:id				| Delete post
-POST	| /post/:id/comment 	| Create comment
-PUT		| /post/:id/comment/:id	| Edit comment
-DELETE	| /post/:id/comment/:id	| Delete comment
-GET		| /trending				| Trending page, trending post feed
-GET		| /user					| Personal user profile
-GET		| /user/:id				| Specific user profile
+GET		| /comment/:id			| Get specific comment
+GET		| /comment/post/:postid	| Get all comments on a specific post
+POST	| /comment 				| Create comment
+PUT		| /comment/:id			| Edit comment
+DELETE	| /comment/:id			| Delete comment
+GET		| /user/:id				| Get specific user profile
 PUT		| /user/:id				| Update user profile
 DELETE	| /user/:id				| Delete user profile
 GET		| *						| 404 page
