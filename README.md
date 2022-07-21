@@ -56,5 +56,5 @@ This table tracks which users each user is following. Each line in this table in
 Column		| Data type		| Description
 ---			| ---			| ---
 follow_id	| integer		| The id of this entry
-source_id	| string		| The id of the source user
-target_id	| integer array	| The id of the target user
+source_id	| integer		| The id of the source user
+target_id	| integer		| The id of the target user
