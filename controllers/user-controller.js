@@ -7,12 +7,22 @@ const comments = require('./comment-controller')
 //GET SPECIFIC USER
 users.get('/:id', async (req, res) => {
     try {
-        const foundUser = await user.findOne({
-            where: { user_id: req.params.id }
-        })
-        res.status(200).send(foundUser.json())
+        const foundUser = {}
+        if (req.query.withPosts === "true") {
+            console.log("With posts!")
+            foundUser = await user.findOne({
+                where: { user_id: req.params.id },
+                include: posts
+            })
+        } else {
+            foundUser = await user.findOne({
+                where: { user_id: req.params.id }
+            })
+        }
+
+        res.status(200).json(foundUser.json())
     } catch (error) {
-        res.status(500).send(error.json())
+        res.status(500).json(error)
     }
 })
 
