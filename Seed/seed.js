@@ -8,6 +8,7 @@ DB.sequelize.sync({ force: true }).then(async function () {
       likes: 456,
       shares: 76,
       tags: 16,
+      user_id: "2",
     },
     {
       post_id: 2,
@@ -15,6 +16,7 @@ DB.sequelize.sync({ force: true }).then(async function () {
       likes: 48,
       shares: 65,
       tags: 8,
+      user_id: "1",
     },
     {
       post_id: 3,
@@ -22,6 +24,7 @@ DB.sequelize.sync({ force: true }).then(async function () {
       likes: 5,
       shares: 12,
       tags: 9,
+      user_id: "3",
     }
   );
 
@@ -51,18 +54,24 @@ DB.sequelize.sync({ force: true }).then(async function () {
       body: "Put a bird on it sriracha palo santo occupy chia, drinking vinegar lomo craft beer 3 wolf moon.",
       likes: 684,
       shares: 84,
+      user_id: "2",
+      post_id: "1",
     },
     {
       comment_id: 2,
       body: "Coloring book af swag waistcoat fanny pack, +1 raw denim asymmetrical lumbersexual scenester authentic.",
       likes: 52,
       shares: 9,
+      user_id: "1",
+      post_id: "2",
     },
     {
       comment_id: 3,
       body: "Roof party vexillologist lyft prism keytar cronut squid ethical pour-over franzen coloring book actually drinking vinegar stumptown hot chicken.",
       likes: 36,
       shares: 15,
+      user_id: "3",
+      post_id: "3",
     }
   );
 });
