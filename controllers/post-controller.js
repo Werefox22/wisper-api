@@ -3,6 +3,17 @@ const db = require('../models')
 const { post } = db
 const { Op } = require('sequelize') 
 
+//GET SPECIFIC POST
+posts.get('/:id', async (req, res) => {
+    try {
+        const foundPost = await post.findOne({
+            where: { post_id: req.params.id }
+        })
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
 //CREATE NEW POST
 posts.post('/', async (req, res) => {
     try {
