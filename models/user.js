@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       // belongs to many users
       user.belongsToMany(user, {
         foreignKey: "source_id",
+        otherKey: "target_id",
         as: "follows",
         through: following
       })
