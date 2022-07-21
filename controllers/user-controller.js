@@ -4,12 +4,16 @@ const { user } = db
 const { Op } = require('sequelize')
 const comments = require('./comment-controller')
 
-//GET PERSONAL USER
-users.get('/', async (req, res) => {
-    console.log('found user')
-
-    const foundUser = await user.findAll()
-    res.send(foundUser)
+//GET SPECIFIC USER
+users.get('/:id', async (req, res) => {
+    try {
+        const foundUser = await user.findOne({
+            where: { user_id: req.params.id }
+        })
+        res.status(200).send(foundUser.json())
+    } catch (error) {
+        res.status(500).send(error.json())
+    }
 })
 
 //GET SPECIFIC USER
