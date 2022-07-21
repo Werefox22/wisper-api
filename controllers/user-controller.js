@@ -6,7 +6,10 @@ const comments = require('./comment-controller')
 
 //GET PERSONAL USER
 users.get('/', async (req, res) => {
+    console.log('found user')
 
+    const foundUser = await user.findAll()
+    res.send(foundUser)
 })
 
 //GET SPECIFIC USER

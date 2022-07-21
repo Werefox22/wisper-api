@@ -41,10 +41,6 @@ app.get('/', (req, res) => {
 	res.send("Hello world!")
 })
 
-//WILDCARD ERROR
-app.get('*', (req, res) => {
-	res.send('404')
-})
 
 //CONTROLLERS
 
@@ -59,4 +55,9 @@ app.use('/user', usersController)
 
 app.listen(process.env.PORT, () => {
 	console.log("Successfully started on port " + process.env.PORT)
+})
+
+//WILDCARD ERROR
+app.get('*', (req, res) => {
+	res.send('404')
 })
