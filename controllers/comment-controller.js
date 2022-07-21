@@ -9,9 +9,9 @@ comments.get('/:id', async (req, res) => {
         const foundComment = await comment.findOne({
             where: { comment_id: req.params.id }
         })
-        res.status(200).send(foundComment.json)
+        res.status(200).json(foundComment.json)
     } catch (error) {
-        res.status(500).send(error.json)
+        res.status(500).json(error)
     }
 })
 
