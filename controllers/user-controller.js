@@ -1,20 +1,19 @@
-const users = require('express').Router()
+const Users = require('express').Router()
 const db = require('../models')
-const { user, post, following } = db
-const { Op } = require('sequelize')
+const { user, post, comment } = db
 
 //GET SPECIFIC USER
-users.get('/:id', async (req, res) => {
+Users.get('/:id', async (req, res) => {
     try {
         let includedModels = []
-        // if we want posts included
+        // include posts
         if (req.query.withPosts === "true") {
             includedModels.push({
                 model: post
             })
         }
 
-        // if we want follows included
+        // include follows
         if (req.query.withFollows === "true") {
             includedModels.push({
                 model: user,
@@ -24,6 +23,15 @@ users.get('/:id', async (req, res) => {
                 }
             })
         }
+
+        // include comments
+        if (req.query.withComments === "true") {
+            includedModels.push({
+                model: comment
+            })
+        }
+
+        // find user
         const foundUser = await user.findOne({
             where: { user_id: req.params.id },
             include: includedModels
@@ -37,7 +45,7 @@ users.get('/:id', async (req, res) => {
 })
 
 //UPDATE USER
-users.put('/:id', async (req, res) => {
+Users.put('/:id', async (req, res) => {
     try {
         const updatedUser = await user.update(req.body, {
             where: {
@@ -51,7 +59,7 @@ users.put('/:id', async (req, res) => {
 })
 
 //DELETE USER
-users.delete('./:id', async (req, res) => {
+Users.delete('./:id', async (req, res) => {
     try {
         const deletedUser = await user.destroy({
             where: {
@@ -66,4 +74,4 @@ users.delete('./:id', async (req, res) => {
     }
 })
 //EXPORT
-module.exports = users
+module.exports = Users
