@@ -1,10 +1,9 @@
-const posts = require('express').Router()
+const Posts = require('express').Router()
 const db = require('../models')
 const { post, comment } = db
-const { Op } = require('sequelize') 
 
 //GET SPECIFIC POST
-posts.get('/:id', async (req, res) => {
+Posts.get('/:id', async (req, res) => {
     try {
         let includedModels = []
         // include comments
@@ -26,7 +25,7 @@ posts.get('/:id', async (req, res) => {
 })
 
 //CREATE NEW POST
-posts.post('/', async (req, res) => {
+Posts.post('/', async (req, res) => {
     try {
         const newPost = await post.create(req.body)
         res.status(200).json({
@@ -39,7 +38,7 @@ posts.post('/', async (req, res) => {
 })
 
 //UPDATE POST
-posts.put('/:id', async (req, res) => {
+Posts.put('/:id', async (req, res) => {
     try {
         const updatedPost = await post.update(req.body, {
             where: {
@@ -55,7 +54,7 @@ posts.put('/:id', async (req, res) => {
 })
 
 //DELETE A POST
-posts.delete('/:id', async (req, res) => {
+Posts.delete('/:id', async (req, res) => {
     try {
         const deletedPost = await post.destroy({
             where: {
@@ -71,4 +70,4 @@ posts.delete('/:id', async (req, res) => {
 })
 
 //EXPORT
-module.exports = posts
+module.exports = Posts
