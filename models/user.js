@@ -7,14 +7,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ post, comment, following }) {
       // has many posts
       user.hasMany(post, {
-        foreignKey: "user_id",
-        as: "posts"
+        foreignKey: "user_id"
       })
 
       // has many comments
       user.hasMany(comment, {
-        foreignKey: "user_id",
-        as: "comments"
+        foreignKey: "user_id"
       })
 
       // belongs to many users
