@@ -1,56 +1,37 @@
 const users = require('express').Router()
 const db = require('../models')
-const { user, post } = db
+const { user, post, following } = db
 const { Op } = require('sequelize')
 
 //GET SPECIFIC USER
 users.get('/:id', async (req, res) => {
     try {
-        let foundUser = {}
+        let includedModels = []
+        // if we want posts included
         if (req.query.withPosts === "true") {
-            console.log("With posts!")
-            foundUser = await user.findOne({
-                where: { user_id: req.params.id },
-                include: post
-            })
-        } else {
-            foundUser = await user.findOne({
-                where: { user_id: req.params.id }
+            includedModels.push({
+                model: post
             })
         }
 
-        res.status(200).json(foundUser)
-    } catch (error) {
-        res.status(500).json(error)
-    }
-})
-
-// temp route
-users.get('/:id/following', async (req, res) => {
-    try {
-        let foundUser = await user.findOne({
-            where: { user_id: req.params.id },
-            include: {
+        // if we want follows included
+        if (req.query.withFollows === "true") {
+            includedModels.push({
                 model: user,
-                as: "following"
-            }
+                as: "follows",
+                through: {
+                    attributes: []
+                }
+            })
+        }
+        const foundUser = await user.findOne({
+            where: { user_id: req.params.id },
+            include: includedModels
         })
-        res.status(200).json(foundUser)
-    } catch (error) {
-        res.status(500).json(error)
-    }
-})
 
-//GET SPECIFIC USER
-users.get('/:id', async (req, res) => {
-    try {
-        const foundUser = user.findOne({
-            where: { 
-                user_id: req.params.id
-            }
-        }) 
         res.status(200).json(foundUser)
     } catch (error) {
+        console.log(error)
         res.status(500).json(error)
     }
 })

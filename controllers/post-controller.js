@@ -6,7 +6,7 @@ const { Op } = require('sequelize')
 //GET SPECIFIC POST
 posts.get('/:id', async (req, res) => {
     try {
-        const foundPost = {}
+        let foundPost
         if (req.query.withComments === "true") {
             console.log('with comments!')
             foundPost = await post.findOne({
@@ -18,7 +18,7 @@ posts.get('/:id', async (req, res) => {
                 where: { post_id: req.params.id }
             })
         }
-        res.status(200).json(foundUser.json())
+        res.status(200).json(foundPost)
     } catch (error) {
         res.status(500).json(error)
     }
