@@ -6,18 +6,19 @@ const { Op } = require('sequelize')
 //GET SPECIFIC POST
 posts.get('/:id', async (req, res) => {
     try {
-        let foundPost
+        let includedModels = []
+        // include comments
         if (req.query.withComments === "true") {
-            console.log('with comments!')
-            foundPost = await post.findOne({
-                where: { post_id: req.params.id }, 
-                include: comment
-            })
-        } else {
-            foundPost = await post.findOne({
-                where: { post_id: req.params.id }
+            includedModels.push({
+                model: comment
             })
         }
+        
+        // find post
+        const foundPost = await post.findOne({
+            where: { post_id: req.params.id },
+            include: includedModels
+        })
         res.status(200).json(foundPost)
     } catch (error) {
         res.status(500).json(error)

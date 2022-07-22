@@ -7,14 +7,14 @@ const { Op } = require('sequelize')
 users.get('/:id', async (req, res) => {
     try {
         let includedModels = []
-        // if we want posts included
+        // include posts
         if (req.query.withPosts === "true") {
             includedModels.push({
                 model: post
             })
         }
 
-        // if we want follows included
+        // include follows
         if (req.query.withFollows === "true") {
             includedModels.push({
                 model: user,
@@ -24,6 +24,15 @@ users.get('/:id', async (req, res) => {
                 }
             })
         }
+
+        // include comments
+        if (req.query.withComments === "ture") {
+            includedModels.push({
+                model: comment
+            })
+        }
+
+        // find user
         const foundUser = await user.findOne({
             where: { user_id: req.params.id },
             include: includedModels
