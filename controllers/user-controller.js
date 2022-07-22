@@ -1,6 +1,6 @@
 const users = require('express').Router()
 const db = require('../models')
-const { user, post, following } = db
+const { user, post, comment } = db
 const { Op } = require('sequelize')
 
 //GET SPECIFIC USER
@@ -26,7 +26,7 @@ users.get('/:id', async (req, res) => {
         }
 
         // include comments
-        if (req.query.withComments === "ture") {
+        if (req.query.withComments === "true") {
             includedModels.push({
                 model: comment
             })
