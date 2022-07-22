@@ -76,7 +76,7 @@ DB.sequelize.sync({ force: true }).then(async function () {
     }
   ]);
 
-  await DB.following.bulkCreate([
+  await DB.follow.bulkCreate([
     {
       follow_id: 0,
       source_id: 1,
