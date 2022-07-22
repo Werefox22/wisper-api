@@ -75,4 +75,22 @@ DB.sequelize.sync({ force: true }).then(async function () {
       post_id: "3",
     }
   ]);
+
+  await DB.follow.bulkCreate([
+    {
+      follow_id: 0,
+      source_id: 1,
+      target_id: 2
+    },
+    {
+      follow_id: 1,
+      source_id: 1,
+      target_id: 3
+    },
+    {
+      follow_id: 2,
+      source_id: 2,
+      target_id: 1
+    },
+  ])
 });

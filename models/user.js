@@ -4,17 +4,23 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
-    static associate({ post, comment }) {
+    static associate({ post, comment, follow }) {
       // has many posts
       user.hasMany(post, {
-        foreignKey: "user_id",
-        as: "posts"
+        foreignKey: "user_id"
       })
 
       // has many comments
       user.hasMany(comment, {
-        foreignKey: "user_id",
-        as: "comments"
+        foreignKey: "user_id"
+      })
+
+      // belongs to many users
+      user.belongsToMany(user, {
+        foreignKey: "source_id",
+        otherKey: "target_id",
+        as: "follows",
+        through: follow
       })
     }
   }
