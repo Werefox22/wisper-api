@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 
 app.use(express.json())
@@ -6,10 +7,18 @@ app.use(express.json())
 // dotenv
 require('dotenv').config()
 
-app.get('/', (req, res) => {
+
+// cors
+var corsOptions = {
+	origin: [
+		"localhost",
+		"deployed frontend"
+	]
+}
+
+app.get('/', cors(corsOptions), (req, res) => {
 	res.send("Hello world!")
 })
-
 
 //CONTROLLERS
 const postsController = require('./controllers/post-controller')
