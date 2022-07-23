@@ -48,6 +48,7 @@ post_id		| integer	| The ID of the post being commented on
 Column		| Data type		| Description
 ---			| ---			| ---
 user_id		| integer		| The user ID
+name		| string		| The user's username
 bio			| string		| The user's bio
 followed	| integer		| How many users are following this user
 
