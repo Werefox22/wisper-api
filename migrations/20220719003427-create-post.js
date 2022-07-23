@@ -23,7 +23,8 @@ module.exports = {
         defaultValue: 0
       },
       tags: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: ""
       },  
       edited: {
         type: Sequelize.BOOLEAN,

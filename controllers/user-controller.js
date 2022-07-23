@@ -6,11 +6,15 @@ const { user, post, comment } = db
 Users.get('/:id', async (req, res) => {
     try {
         let includedModels = []
+        let ordering = []
+        
         // include posts
         if (req.query.withPosts === "true") {
             includedModels.push({
                 model: post
             })
+
+            ordering.push([ post, 'date', 'desc' ])
         }
 
         // include follows
@@ -22,6 +26,8 @@ Users.get('/:id', async (req, res) => {
                     attributes: []
                 }
             })
+
+            ordering.push([ {model: user, as:"follows"}, 'name', 'asc' ])
         }
 
         // include comments
@@ -29,12 +35,15 @@ Users.get('/:id', async (req, res) => {
             includedModels.push({
                 model: comment
             })
+
+            ordering.push([ comment, 'date', 'desc' ])
         }
 
         // find user
         const foundUser = await user.findOne({
             where: { user_id: req.params.id },
-            include: includedModels
+            include: includedModels,
+            order: ordering
         })
 
         res.status(200).json(foundUser)

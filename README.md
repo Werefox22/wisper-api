@@ -25,7 +25,7 @@ Route			| Query			| Purpose
 GET /post/:id	| ?withComments	| Include the post's comments
 GET /user/:id	| ?withPosts	| Include the user's posts
 GET /user/:id	| ?withFollows	| Include the user's follows
-GET /user/:id	| ?comments		| Include the user's comments
+GET /user/:id	| ?withComments	| Include the user's comments
 
 ## Tables
 ### Posts
