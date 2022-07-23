@@ -6,18 +6,24 @@ const { post, comment } = db
 Posts.get('/:id', async (req, res) => {
     try {
         let includedModels = []
+        let ordering = []
+
         // include comments
         if (req.query.withComments === "true") {
             includedModels.push({
                 model: comment
             })
+
+            ordering.push([ comment, 'date', 'desc' ])
         }
         
         // find post
         const foundPost = await post.findOne({
             where: { post_id: req.params.id },
-            include: includedModels
+            include: includedModels,
+            order: ordering
         })
+
         res.status(200).json(foundPost)
     } catch (error) {
         res.status(500).json(error)

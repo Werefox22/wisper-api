@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 
       // has many comments
       post.hasMany(comment, {
-        foreignKey: "comment_id"
+        foreignKey: "post_id"
       })
     }
   }
@@ -37,7 +37,8 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 0
     },
     tags: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      defaultValue: ""
     },
     edited: {
       type: DataTypes.BOOLEAN,
