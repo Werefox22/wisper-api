@@ -16,11 +16,6 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: ""
       },
-      following: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        defaultValue: 0
-      },
       followed: {
         type: Sequelize.INTEGER,
         allowNull: false,
