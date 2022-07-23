@@ -4,18 +4,21 @@ DB.sequelize.sync({ force: true }).then(async function () {
   await DB.user.bulkCreate([
     {
       user_id: 1,
+      name: "username",
       bio: "Sartorial humblebrag normcore, est occaecat adaptogen mixtape distillery pabst hexagon typewriter dolore. Chillwave mustache venmo edison bulb, actually hot chicken ugh in in velit kogi aute.",
       following: 846,
       followed: 894,
     },
     {
       user_id: 2,
+      name: "pokemon",
       bio: "3 wolf moon occupy lo-fi pop-up 90's pug raclette, try-hard kogi kickstarter tilde shabby chic fingerstache gochujang dreamcatcher",
       following: 365,
       followed: 132,
     },
     {
       user_id: 3,
+      name: "werefox",
       bio: "Mumblecore roof party thundercats vexillologist pitchfork, sartorial banh mi next level prism taxidermy. Ramps wayfarers gentrify tumblr.",
       following: 12,
       followed: 99,
