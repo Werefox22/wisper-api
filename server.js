@@ -9,14 +9,15 @@ require('dotenv').config()
 
 
 // cors
-var corsOptions = {
-	origin: [
-		"localhost",
-		"deployed frontend"
-	]
-}
+app.use(cors())
+// var corsOptions = {
+// 	origin: [
+// 		"localhost",
+// 		"deployed frontend"
+// 	]
+// }
 
-app.get('/', cors(corsOptions), (req, res) => {
+app.get('/', (req, res) => {
 	res.send("Hello world!")
 })
 
