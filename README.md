@@ -5,7 +5,7 @@ Method	| Path					| Purpose
 ---		| --- 					| ---
 GET 	| /						| Landing page
 GET		| /post/:id				| Get specific post
-GET		| /post/:id?withComments=true	| Get specific post and eager load the comments
+GET		| /post/:id?{options}	| Get specific post and eager load some data
 POST	| /post					| Create new post
 PUT		| /post/:id				| Update post
 DELETE	| /post/:id				| Delete post
@@ -14,10 +14,18 @@ POST	| /comment 				| Create comment
 PUT		| /comment/:id			| Edit comment
 DELETE	| /comment/:id			| Delete comment
 GET		| /user/:id				| Get specific user
-GET		| /user/:id?withPosts	| Get specific user and eager load their posts
+GET		| /user/:id?{options}	| Get specific user and eager load their posts
 PUT		| /user/:id				| Update user profile
 DELETE	| /user/:id				| Delete user profile
 GET		| *						| 404 page
+
+### Options
+Route			| Query			| Purpose
+---				| --- 			| ---
+GET /post/:id	| ?withComments	| Include the post's comments
+GET /user/:id	| ?withPosts	| Include the user's posts
+GET /user/:id	| ?withFollows	| Include the user's follows
+GET /user/:id	| ?comments		| Include the user's comments
 
 ## Tables
 ### Posts
