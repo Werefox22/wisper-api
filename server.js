@@ -18,7 +18,10 @@ app.use(cors())
 // }
 
 app.get('/', (req, res) => {
-	res.send("Hello world!")
+	const message = {
+		message: "Welcome to the Wisper API. Please view the README at https://github.com/Werefox22/wisper-api to get started."
+	}
+	res.status(200).json(message)
 })
 
 //CONTROLLERS
