@@ -52,7 +52,8 @@ Posts.put('/:id', async (req, res) => {
             }
         })
         res.status(200).json({
-            message: `Updated ${updatedPost}`
+            message: `Successfully updated post ${req.params.id}`,
+            updatedPost: updatedPost
         })
     } catch (error) {
         res.status(500).json(error)

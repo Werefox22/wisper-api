@@ -36,7 +36,8 @@ Comments.put('/:id', async (req, res) => {
             }
         })
         res.status(200).json({
-            message: `Updated ${updatedComment}`
+            message: `Successfully updated comment ${req.params.id}`,
+            updatedComment: updatedComment
         })
     } catch (error) {
         res.status(500).json(error)
