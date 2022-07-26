@@ -346,7 +346,6 @@ Response structure:
 <br>
 
 	// Reponse
-	
 	{
 		message: "Successfully updated user 3"
 		updatedUser: {
@@ -368,8 +367,8 @@ Response structure:
 		body: JSON.stringify({
 			// note that user_id is excluded here as it's the primary key and cannot be changed
 			"name": "Typerfish",
-			"bio": string,
-			"followed": integer
+			"bio": "",
+			"followed": 10
 		})
 	})
 	responseJson = response.json()
@@ -379,32 +378,14 @@ Response structure:
 
 	// Reponse
 	{
-		"user_id": 2,
-		"name": "pokemon",
-		"bio": "3 wolf moon occupy lo-fi pop-up 90's pug raclette, try-hard kogi kickstarter tilde shabby chic fingerstache gochujang dreamcatcher",
-		"followed": 132,
-		"posts": [
-		{
-			"post_id": 1,
-			"body": "Im baby labore semiotics cronut lomo intelligentsia tattooed esse tbh meh shabby chic. Taiyaki post-ironic XOXO flexitarian raclette try-hard. Pop-up artisan helvetica schlitz vaporware pitchfork freegan cronut.",
-			"likes": 456,
-			"shares": 76,
-			"tags": "16",
-			"edited": false,
-			"date": "2022-07-23T15:31:39.538Z",
-			"user_id": 2
+		message: "Successfully updated user 4"
+		updatedUser: {
+			"user_id": 4,
+			"name": "Typerfish",
+			"bio": "",
+			"followed": 10
 		}
-	],
-	"follows": [
-		{
-			"user_id": 1,
-			"name": "username",
-			"bio": "Sartorial humblebrag normcore, est occaecat adaptogen mixtape distillery pabst hexagon typewriter dolore. Chillwave mustache venmo edison bulb, actually hot chicken ugh in in velit kogi aute.",
-			"followed": 894
-		}
-	],
-	"comments": []
-	}
+	}	
 
 
 <hr>
@@ -414,7 +395,40 @@ Response structure:
 <summary>DELETE</summary>
 <hr>
 
-<hr>
+Request structure:
+
+	DELETE https://wisper-api-71822.herokuapp.com/user/{id}
+
+Parameters:
+
+`id:` The id of the user to delete
+
+<br>
+Response structure:
+
+	{
+		message: "Deleted user {id}"
+	}	
+
+### Example
+
+	// Request
+	let response = await fetch(`https://wisper-api-71822.herokuapp.com/user/3`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	})
+	responseJson = response.json()
+	console.log(responseJson)
+
+<br>
+
+	// Reponse
+	{
+		message: "Deleted user 3"
+	}	
+
 </details>
 
 <hr>

@@ -47,13 +47,14 @@ Comments.put('/:id', async (req, res) => {
 //DELETE A COMMENT
 Comments.delete('/:id', async (req, res) => {
     try {
-        const deletedComment = await comment.destroy({
+        await comment.destroy({
             where: {
                 comment_id: req.params.id
             }
         })
+        
         res.status(200).json({
-            message: `Deleted ${deletedComment}`
+            message: `Deleted comment ${req.params.id}`
         })
     } catch (error) {
         res.status(500).json(error)
