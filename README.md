@@ -1,11 +1,40 @@
 # wisper-api
-This is the backend repository for the Wisper app. The frontend repository can be found [here.](https://github.com/AnthonyConnell/wisper-frontend)
+Welcome to the backend repository for the Wisper app. The frontend repository can be found [here.](https://github.com/AnthonyConnell/wisper-frontend)
+### Table of Contents
+* [Database](#database)
+* [API](#api)
+
+## Installation
+
+## Database
+This API makes use of [PostgreSQL](https://www.postgresql.org/). Currently there are 4 tables:
+
+![ERD](./assets/erd.png)
+
+`users, posts, comments, follows`
+
+All of the tables are dependent on the User table - every post has a user, every comment has a post and a user, and every user can follow any other user.
+
+Below is the documentation for each table. You can expand each dropdown to find a short summary of the data structure, and nested inside are more detailed instructions and examples.
+
+### Users
+#### Summary
+This table holds data about a user
+
+Column		| Data type		| Nullable? | Description
+---			| ---			| --- 		| ---
+user_id		| integer		| false 	| The user ID
+name		| string		| false		| The user's username
+bio			| string		| true 		| The user's bio
+followed	| integer		| true		| How many users are following this user
+
+#### Posts
+
+#### Comments
+
+#### Follows
 
 ## API
-Below is the documentation for how to use the api. You can view the table or go to the detailed views for examples.
-<details>
-<summary>Simple table view</summary>
-<br>
 
 Method	| Path					| Purpose
 ---		| --- 					| ---
@@ -24,7 +53,8 @@ GET		| /user/:id?{options}	| Get specific user and eager load their posts
 PUT		| /user/:id				| Update user profile
 DELETE	| /user/:id				| Delete user profile
 GET		| *						| 404 page
-</details>
+
+
 
 <details>
 <summary>User</summary>
@@ -90,13 +120,6 @@ date		| date		| The time the comment was created
 user_id		| integer	| The profile ID of the user who posted it
 post_id		| integer	| The ID of the post being commented on
 
-### Users
-Column		| Data type		| Description
----			| ---			| ---
-user_id		| integer		| The user ID
-name		| string		| The user's username
-bio			| string		| The user's bio
-followed	| integer		| How many users are following this user
 
 ### Following
 This table tracks which users each user is following. Each line in this table indicates one follow, with the source_id belonging to the user who is following, and the target_id is the user being followed.
