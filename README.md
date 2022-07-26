@@ -1,6 +1,12 @@
 # wisper-api
+This is the backend repository for the Wisper app. The frontend repository can be found [here.](https://github.com/AnthonyConnell/wisper-frontend)
 
-## Routing
+## API
+Below is the documentation for how to use the api. You can view the table or go to the detailed views for examples.
+<details>
+<summary>Simple table view</summary>
+<br>
+
 Method	| Path					| Purpose
 ---		| --- 					| ---
 GET 	| /						| Landing page
@@ -18,6 +24,38 @@ GET		| /user/:id?{options}	| Get specific user and eager load their posts
 PUT		| /user/:id				| Update user profile
 DELETE	| /user/:id				| Delete user profile
 GET		| *						| 404 page
+</details>
+
+<details>
+<summary>User</summary>
+<br>
+
+### Request
+`GET user`
+
+	https://wisper-api-71822.herokuapp.com/user/{id}?{options}
+
+`id:` The id of the user you wish to get.
+
+`options:` Options to choose what data to include in the response.
+
+### Options
+
+`withPosts=true:` Include the user's posts.
+
+`withComments=true:` Include the user's comments.
+
+`withFollows=true:` Include the user's follows.
+
+### Response Example
+	{
+		"user_id": 1,
+		"name": "username",
+		"bio": "Sartorial humblebrag normcore, est occaecat adaptogen mixtape distillery pabst hexagon typewriter dolore. Chillwave mustache venmo edison bulb, actually hot chicken ugh in in velit kogi aute.",
+		"followed": 894
+	}
+
+</details>
 
 ### Options
 Route			| Query			| Purpose
