@@ -1,6 +1,7 @@
 # wisper-api
 Welcome to the backend repository for the Wisper app. The frontend repository can be found [here.](https://github.com/AnthonyConnell/wisper-frontend)
 ### Table of Contents
+* [Installation](#installation)
 * [Database](#database)
 * [API](#api)
 
@@ -9,7 +10,7 @@ Welcome to the backend repository for the Wisper app. The frontend repository ca
 ## Database
 This API makes use of [PostgreSQL](https://www.postgresql.org/). Currently there are 4 tables:
 
-![ERD](./assets/erd.png)
+![Database ERD](./assets/erd.png)
 
 `users, posts, comments, follows`
 
@@ -18,24 +19,45 @@ All of the tables are dependent on the User table - every post has a user, every
 Below is the documentation for each table. You can expand each dropdown to find a short summary of the data structure, and nested inside are more detailed instructions and examples.
 
 ### Users
-#### Summary
-This table holds data about a user
+<details>
+<hr>
 
+### Summary
+The Users table holds basic information about the user, such as the name and bio. Each user has posts, comments, and follows, and those are contained in associated tables.
+
+### Columns
 Column		| Data type		| Nullable? | Description
 ---			| ---			| --- 		| ---
 user_id		| integer		| false 	| The user ID
 name		| string		| false		| The user's username
 bio			| string		| true 		| The user's bio
 followed	| integer		| true		| How many users are following this user
+<br>
+### Associations
+Table 	| Foreign key	| Relationship
+--- 	| --- 			| ---
+posts	| user_id		| One-to-many
+<hr>
+</details>
 
-#### Posts
+### Posts
+<details>
+</details>
 
-#### Comments
+### Comments
+<details>
+</details>
 
-#### Follows
+### Follows
+<details>
+</details>
+
+<hr>
 
 ## API
+To access the databases, you can fetch from `link`. In return you'll get some data in json format.
 
+### Routes
 Method	| Path					| Purpose
 ---		| --- 					| ---
 GET 	| /						| Landing page
@@ -54,8 +76,10 @@ PUT		| /user/:id				| Update user profile
 DELETE	| /user/:id				| Delete user profile
 GET		| *						| 404 page
 
+### Simple Example
 
 
+<hr>
 <details>
 <summary>User</summary>
 <br>
