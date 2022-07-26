@@ -40,5 +40,8 @@ app.listen(process.env.PORT, () => {
 
 //WILDCARD ERROR
 app.get('*', (req, res) => {
-	res.send('404')
+	const message = {
+		message: "404: We couldn't find what you're looking for. Check your request for spelling errors."
+	}
+	res.status(404).json(message)
 })

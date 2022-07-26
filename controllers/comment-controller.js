@@ -8,7 +8,17 @@ Comments.get('/:id', async (req, res) => {
         const foundComment = await comment.findOne({
             where: { comment_id: req.params.id }
         })
-        res.status(200).json(foundComment)
+
+        // check that a comment was found
+        if (!foundComment) {
+            // Found null
+            res.status(404).json({
+                message: `404: Could not find comment with id of ${req.params.id}.`
+            })
+        } else {
+            // Found comment
+            res.status(200).json(foundComment)
+        }
     } catch (error) {
         res.status(500).json(error)
     }

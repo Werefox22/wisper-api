@@ -46,7 +46,16 @@ Users.get('/:id', async (req, res) => {
             order: ordering
         })
 
-        res.status(200).json(foundUser)
+        // check that a user was found
+        if (!foundUser) {
+            // Found null
+            res.status(404).json({
+                message: `404: Could not find user with id of ${req.params.id}.`
+            })
+        } else {
+            // Found user
+            res.status(200).json(foundUser)
+        }
     } catch (error) {
         console.log(error)
         res.status(500).json(error)
