@@ -4,6 +4,7 @@ Welcome to the backend repository for the Wisper app. The frontend repository ca
 * [Installation](#installation)
 * [Database](#database)
 * [API](#api)
+* [Documentation](#documentation)
 
 ## Installation
 ##### [Top :arrow_up_small:](#table-of-contents)
@@ -185,7 +186,10 @@ Here's an example of a fetch request and its response:
 		"user_id": 2
 	}
 
-### Detailed Examples
+See the documentation below for more information and examples.
+
+## Documentation
+##### [Top :arrow_up_small:](#table-of-contents)
 <hr>
 Below is detailed information about using the database, including requests for getting, setting, and deleting data, as well as options for including associated tables.
 
@@ -237,9 +241,9 @@ Response structure:
 
 	// Request
 	const fetchData = async () => { 
-		var postResponse = await fetch("https://wisper-api-71822.herokuapp.com/post/1");
-		const postJson = await userPostsRes.json();
-		console.log(postJson)
+		var userResponse = await fetch("https://wisper-api-71822.herokuapp.com/user/1");
+		const userJson = await userResponse.json();
+		console.log(userJson)
 	}
 
 <br>
@@ -260,9 +264,9 @@ Response structure:
 
 		// Request
 	const fetchData = async () => { 
-		var postResponse = await fetch("https://wisper-api-71822.herokuapp.com/user/2?withPosts=true&withComments=true&withFollows=true");
-		const postJson = await userPostsRes.json();
-		console.log(postJson)
+		var userResponse = await fetch("https://wisper-api-71822.herokuapp.com/user/2?withPosts=true&withComments=true&withFollows=true");
+		const userJson = await userResponse.json();
+		console.log(userJson)
 	}
 
 <br>
@@ -347,7 +351,7 @@ Response structure:
 
 	// Reponse
 	{
-		message: "Successfully updated user 3"
+		message: "Successfully updated user 3",
 		updatedUser: {
 			"user_id": 3,
 			"name": "Werefox22",
@@ -378,7 +382,7 @@ Response structure:
 
 	// Reponse
 	{
-		message: "Successfully updated user 4"
+		message: "Successfully updated user 4",
 		updatedUser: {
 			"user_id": 4,
 			"name": "Typerfish",
@@ -428,6 +432,211 @@ Response structure:
 	{
 		message: "Deleted user 3"
 	}	
+
+</details>
+
+<hr>
+</details>
+
+### Post
+<details>
+<hr>
+
+### Requests
+
+<!-- GET SECTION -->
+<details>
+<summary>GET</summary>
+<hr>
+
+Request structure:
+
+	GET https://wisper-api-71822.herokuapp.com/post/{id}?{options}
+
+Parameters:
+
+`id:` The id of the post to fetch
+
+`options:` Options to choose what data to include in the response
+
+Options:
+
+`withComments=true:` Include the post's comments
+
+<br>
+Response structure:
+
+	{
+		"post_id": integer,
+		"body": string,
+		"likes": integer,
+		"shares": integer,
+		"tags": string,
+		"edited": boolean,
+		"date": date,
+		"user_id": integer
+	}
+
+### Examples
+1: Get post data
+
+	// Request
+	const fetchData = async () => { 
+		var postResponse = await fetch("https://wisper-api-71822.herokuapp.com/post/1");
+		const postJson = await postResponse.json();
+		console.log(postJson)
+	}
+
+<br>
+
+	// Reponse
+	{
+		"post_id": 1,
+		"body": "Im baby labore semiotics cronut lomo intelligentsia tattooed esse tbh meh shabby chic. Taiyaki post-ironic XOXO flexitarian raclette try-hard. Pop-up artisan helvetica schlitz vaporware pitchfork freegan cronut.",
+		"likes": 456,
+		"shares": 76,
+		"tags": "16",
+		"edited": false,
+		"date": "2022-07-23T15:31:39.538Z",
+		"user_id": 2
+	}
+
+2: Get post data with comments
+
+	// Request
+	const fetchData = async () => { 
+		var postResponse = await fetch("https://wisper-api-71822.herokuapp.com/post/76?withComments=true");
+		const postJson = await postResponse.json();
+		console.log(postJson)
+	}
+
+<br>
+
+	// Reponse
+	{
+		"post_id": 76,
+		"body": "I think about the first people to try mushrooms a lot... trying to figure out which are ok, which kill you, and which sends you into hallucinations seems exhausting. ",
+		"likes": 2,
+		"shares": 0,
+		"tags": "",
+		"edited": false,
+		"date": "2022-07-26T00:20:51.386Z",
+		"user_id": 1,
+		"comments": [
+			{
+				"comment_id": 109,
+				"body": "I think they animals to see what they ate",
+				"likes": 1,
+				"shares": 0,
+				"edited": true,
+				"date": "2022-07-26T00:22:42.836Z",
+				"user_id": 2,
+				"post_id": 76
+			}
+		]
+	}
+
+<hr>
+</details>
+
+<!-- PUT SECTION -->
+
+<details>
+<summary>PUT</summary>
+<hr>
+
+This is still a work in progress. Sorry!
+
+<hr>
+</details>
+
+<details>
+<summary>DELETE</summary>
+<hr>
+
+This is still a work in progress. Sorry!
+
+</details>
+
+<hr>
+</details>
+
+### Comment
+<details>
+<hr>
+
+### Requests
+
+<!-- GET SECTION -->
+<details>
+<summary>GET</summary>
+<hr>
+
+Request structure:
+
+	GET https://wisper-api-71822.herokuapp.com/comment/{id}
+
+Parameters:
+
+`id:` The id of the comment to fetch
+
+<br>
+Response structure:
+
+	{
+		"comment_id": integer,
+		"body": string,
+		"likes": integer,
+		"shares": integer,
+		"edited": boolean,
+		"date": date,
+		"user_id": integer,
+		"post_id": integer
+	}
+
+### Examples
+1: Get comment data
+
+	// Request
+	const fetchData = async () => { 
+		var commentResponse = await fetch("https://wisper-api-71822.herokuapp.com/comment/109");
+		const commentJson = await commentResponse.json();
+		console.log(commentJson)
+	}
+
+<br>
+
+	// Reponse
+	{
+		"comment_id": 109,
+		"body": "I think they animals to see what they ate",
+		"likes": 1,
+		"shares": 0,
+		"edited": true,
+		"date": "2022-07-26T00:22:42.836Z",
+		"user_id": 2,
+		"post_id": 76
+	}
+
+<hr>
+</details>
+
+<!-- PUT SECTION -->
+
+<details>
+<summary>PUT</summary>
+<hr>
+
+This is still a work in progress. Sorry!
+
+<hr>
+</details>
+
+<details>
+<summary>DELETE</summary>
+<hr>
+
+This is still a work in progress. Sorry!
 
 </details>
 
