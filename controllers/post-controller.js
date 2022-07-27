@@ -24,7 +24,16 @@ Posts.get('/:id', async (req, res) => {
             order: ordering
         })
 
-        res.status(200).json(foundPost)
+        // check that a post was found
+        if (!foundPost) {
+            // Found null
+            res.status(404).json({
+                message: `404: Could not find post with id of ${req.params.id}.`
+            })
+        } else {
+            // Found post
+            res.status(200).json(foundPost)
+        }
     } catch (error) {
         res.status(500).json(error)
     }
