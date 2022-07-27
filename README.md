@@ -1,28 +1,47 @@
 # wisper-api
-Welcome to the backend repository for the Wisper app. The frontend repository can be found [here.](https://github.com/AnthonyConnell/wisper-frontend)
 ### Table of Contents
 * [Installation](#installation)
 * [Database](#database)
 * [API](#api)
 * [Documentation](#documentation)
 
-## Installation
-##### [Top :arrow_up_small:](#table-of-contents)
-
+## About
+<sub>[Top :arrow_up_small:](#table-of-contents)</sub>
 <hr>
+
+[Wisper](https://wisper-1.herokuapp.com/) is an social media copycat app created for NC State's Software Development Bootcamp's second milestone project. It utilizes React, Redux, MaterialUI, Express and Sequelize, and is deployed via Heroku.
+
+The [frontend](https://github.com/AnthonyConnell/wisper-frontend) was developed by [Anthony Connell](https://github.com/AnthonyConnell), [Deanna Ireland](https://github.com/Typerfish), and [Valeria Garcia](https://github.com/valgarciav), and the backend was developed by [Jack Wright](https://github.com/Werefox22) and [Caroline Konrad](https://github.com/carolinekonrad).
+
+If you want more information about the frontend, you can find it [here](https://github.com/AnthonyConnell/wisper-frontend).
+
+## Installation
+<sub>[Top :arrow_up_small:](#table-of-contents)</sub>
+<hr>
+
+Installing the backend onto your local machine is simple:
+
+1. Clone the repository
+2. Run `npm install` to install the dependencies
+3. Run `nodemon` to start a local server
+
+You then can access the api at `localhost:port`, replacing `port` with the port you're hosting on (probably 3000). You can see the port in the console after running nodemon.
+
+In the browser, you can view individual users, posts, or comments. If you want to create, update, or delete data, you'll have to use another program such as [Postman](https://www.postman.com/). For more information about using the API, see the [API](#api) section of this readme.
+
+If you want to access the database from another machine, you can deploy it to a [Heroku](https://www.heroku.com/home) app. You'll have to install [Heroku Postgres](https://elements.heroku.com/addons/heroku-postgresql), and use the credentials you recieve in the config vars.
 
 ## Database
-##### [Top :arrow_up_small:](#table-of-contents)
+<sub>[Top :arrow_up_small:](#table-of-contents)</sub>
 <hr>
-This API makes use of [PostgreSQL](https://www.postgresql.org/). Currently there are 4 tables:
+
+This API makes use of [PostgreSQL](https://www.postgresql.org), hosted by [Heroku Postgres](https://elements.heroku.com/addons/heroku-postgresql). Currently, there are 4 tables: users, posts, comments, and follows.
 
 ![Database ERD](./assets/erd.png)
 
-`users, posts, comments, follows`
-
 All of the tables are dependent on the User table - every post has a user, every comment has a post and a user, and every user can follow any other user.
 
-Below is the documentation for each table. You can expand each dropdown to find a short summary of the data structure, and nested inside are more detailed instructions and examples.
+Below is more information about each table. You can expand each dropdown to find a short summary and the data structure. 
 
 ### Users
 <details>
@@ -75,6 +94,9 @@ Table 	| Foreign key	| Relationship
 --- 	| --- 			| ---
 user	| user_id		| Belongs to
 comments| post_id		| Has many
+
+### Requests
+See [API/Post](#post) for information on requests.
 <hr>
 </details>
 
@@ -103,6 +125,8 @@ Table 	| Foreign key	| Relationship
 user	| user_id		| Belongs to
 posts	| user_id		| Belongs to
 
+### Requests
+See [API/Comment](#comment) for information on requests.
 <hr>
 </details>
 
@@ -123,18 +147,23 @@ target_id	| integer		| The id of the target user
 
 ### Associations
 The Follows table has no associations of its own, as it is a junction table. The Users table associates with itself through this table.
+
+### Requests
+You cannot access this table directly through the api. To see which users a user is following, you can fetch a user and include their follows with the `?withFollows=true` option set. See [API/User](#user) for more info.
 <hr>
 </details>
 
 <br>
 
 ## API
-##### [Top :arrow_up_small:](#table-of-contents)
+<sub>[Top :arrow_up_small:](#table-of-contents)</sub>
 <hr>
 
-To access the databases, you can simply fetch from the app's url:
+To access the database, you can simply fetch from the app's url:
 
-	https://wisper-api-71822.herokuapp.com/
+	https://wisper-api-71822.herokuapp.com/user/1
+
+
 
 In response, the app will return data in JSON format:
 
@@ -189,7 +218,7 @@ Here's an example of a fetch request and its response:
 See the documentation below for more information and examples.
 
 ## Documentation
-##### [Top :arrow_up_small:](#table-of-contents)
+<sub>[Top :arrow_up_small:](#table-of-contents)</sub>
 <hr>
 Below is detailed information about using the database, including requests for getting, setting, and deleting data, as well as options for including associated tables.
 
