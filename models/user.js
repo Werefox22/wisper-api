@@ -40,7 +40,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     followed: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       defaultValue: 0
     },
 }, {

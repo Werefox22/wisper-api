@@ -52,7 +52,8 @@ Posts.put('/:id', async (req, res) => {
             }
         })
         res.status(200).json({
-            message: `Updated ${updatedPost}`
+            message: `Successfully updated post ${req.params.id}`,
+            updatedPost: updatedPost
         })
     } catch (error) {
         res.status(500).json(error)
@@ -62,13 +63,14 @@ Posts.put('/:id', async (req, res) => {
 //DELETE A POST
 Posts.delete('/:id', async (req, res) => {
     try {
-        const deletedPost = await post.destroy({
+        await post.destroy({
             where: {
                 post_id: req.params.id
             }
         })
+        
         res.status(200).json({
-            message: `Deleted ${deletedPost}`
+            message: `Deleted post ${req.params.id}`
         })
     } catch (error) {
         res.status(500).json(error)

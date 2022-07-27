@@ -10,6 +10,7 @@ module.exports = {
     "protocol":"postgres",
     "port": "5432"
   },
+  // I would much prefer just using DATABASE_URL, but due to a bug that won't work.
   "production": {
     "username": process.env.DATABASE_USER,
     "password": process.env.DATABASE_PASS,

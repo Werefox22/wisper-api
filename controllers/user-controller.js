@@ -61,7 +61,10 @@ Users.put('/:id', async (req, res) => {
                 user_id: req.params.id
             }
         })
-        res.status(200).json(updatedUser)
+        res.status(200).json({
+            message: `Successfully updated user ${req.params.id}`,
+            updatedUser: updatedUser
+        })
     } catch (error) {
         res.status(500).json(error)
     }
@@ -70,13 +73,14 @@ Users.put('/:id', async (req, res) => {
 //DELETE USER
 Users.delete('./:id', async (req, res) => {
     try {
-        const deletedUser = await user.destroy({
+        await user.destroy({
             where: {
                 user_id: req.params.id
             }
         })
+        
         res.status(200).json({
-            message: `Deleted ${deletedUser}`
+            message: `Deleted user ${req.params.id}`
         })
     } catch (error) {
         res.status(500).json(error)
